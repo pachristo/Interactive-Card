@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Interactive Card</title>
+    <link rel="stylesheet" href="css/card.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="card-holder">
+      <div class="secondcard">
+        <div class="seal"></div>
+        <span class="cvv" id="cvv">000</span>
+      </div>
+      <div class="first-card">
+        <div class="circle">
+          <div class="big-circle"></div>
+          <div class="sml-circle"></div>
+        </div>
+        <div class="text">
+          <span id="number"><span class="1">0000</span>&nbsp;<span class="2">0000</span>&nbsp;<span class="3">0000</span>&nbsp;<span class="4">0000</span></span>
+        </div>
+        <div class="name-cvv">
+          <span class="name" id="name"> Jane Appleseed</span>
+          <div class="cvv2">
+            <span id="month">00</span>
+            /
+            <span id="year">00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form">
+      <form action=""  autocomplete="off">
+        <div class="cdname">
+          <label for="CardName">Cardholder Name</label><br>
+          <input
+            type="text"
+            placeholder="e.g. Jane Appleseed"
+            id="card_Name"
+          />
+          <span class="cholder" id="lass"></span>
+        </div>
+        <div class="cdnum">
+          <label for="CardNumber">Card Number</label><br>
+          <input
+            oninput="if(this.value.length > this.maxLength) this.value=this.value.slice(0, this.maxLength)"
+            type="text"
+            minlength="16"
+            maxlength="16"
+            onkeypress="return onlyNumberKey(event)"
+            placeholder="e.g. 1234 5678 9123 0000" id="card_Number"
+            class="card_num_class "
+          />
+          <small class="card_error active "></small>
+        </div>
+        <div class="cdexp">
+          <div class="cd">
+            <label for="CardExp">Exp. Date (MM/YY)</label><br>
+            <div class="cd3">
+              <input
+                oninput="if(this.value.length > this.maxLength) this.value=this.value.slice(0, this.maxLength)"
+                type="text"
+                minlength="2"
+                maxlength="2"
+                placeholder="MM"
+                id="card_Month"
+              />
+              <input
+                oninput="if(this.value.length > this.maxLength) this.value=this.value.slice(0, this.maxLength)"
+                type="text"
+                minlength="2"
+                maxlength="2"
+                type="text"
+                placeholder="YY"
+                id="card_Year"
+              />
+            </div>
+          </div>
+          <div class="cd2">
+            <label for="CardCVV">CVC</label><br>
+            <input
+              oninput="if(this.value.length > this.maxLength) this.value=this.value.slice(0, this.maxLength)"
+              type="text"
+              minlength="3"
+              maxlength="3"
+              type="text"
+              placeholder="e.g. 123"
+              id="card_Cvv"
+            />
+          </div>
+        </div>
+        <button type="submit" id="submit_bnt">Confirm</button>
+      </form>
+      <div class="thank hidden">
+        <img src="./images/icon-complete.svg" alt="complete">
+        <h1>Thank you!</h1>
+        <p>We've added your card details</p>
+        <button>Continue</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/index.js"></script>
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Aniebiet</a>.
+  </div> -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</body>
+</html>
