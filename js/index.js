@@ -41,6 +41,7 @@ cvvInput.addEventListener("keyup", setcardCvv);
 
 submitBtn.addEventListener("click", handleSubmit);
 
+// Get the value from the form input into the card
 function setcardNumber(e) {
     var number = format(e.target.value);
     var len = number.length
@@ -51,6 +52,7 @@ function setcardNumber(e) {
     }
 }
 
+// Get the value from the form input into the card
 function setcardName(e) {
     var name = e.target.value;
     var len = name.length;
@@ -61,6 +63,7 @@ function setcardName(e) {
     }
 }
 
+// Get the value from the form input into the card
 function setcardMonth(e) {
     var month = e.target.value;
     var len = month.length;
@@ -74,6 +77,7 @@ function setcardMonth(e) {
     }
 }
 
+// Get the value from the form input into the card
 function setcardYear(e) {
     var year = e.target.value;
     var len = year.length;
@@ -87,6 +91,7 @@ function setcardYear(e) {
     }
 }
 
+// Get the value from the form input into the card
 function setcardCvv(e) {
     var cvv = e.target.value;
     var len = cvv.length;
@@ -103,14 +108,22 @@ function setcardCvv(e) {
     }
 }
 
+// For spacing the card number in group of four
 function format(s) {
     return s.toString().replace(/\d{4}(?=.)/g, '$& ');
+}
+
+// A simple rejex for checking an input if it contains a digit
+function onlyNumber(inp){
+    let num = /^[0-9]+$/;
+    return num.test(inp)
 }
 
 
 function handleSubmit(e) {
     e.preventDefault();
 
+    // check if the form input is empty
     if(!nameInput.value){
         nameInput.classList.add('error')
         nameInput.parentElement.classList.add('error-message')
@@ -119,21 +132,25 @@ function handleSubmit(e) {
         nameInput.parentElement.classList.remove('error-message')
     }
 
+    // check if the form input is empty
     if(!numberInput.value){
         numberInput.classList.add('error')
         numberInput.parentElement.classList.add('error-message')
-    }else if(numberInput.value != String){
-        numberInput.classList.add('error')
-        numberInput.parentElement.classList.add('error-message2')
-    }else if(numberInput.value == String){
-        numberInput.classList.remove('error')
-        numberInput.parentElement.classList.remove('error-message2')
     }else{
         numberInput.classList.remove('error')
         numberInput.parentElement.classList.remove('error-message')
-        numberInput.parentElement.classList.remove('error-message2')
     }
 
+    // check if the form input contains a letter and not a digit
+    if (onlyNumber(numberInput)) {
+        numberInput.classList.remove('error')
+        numberInput.parentElement.classList.remove('error-message2')
+    } else {
+        numberInput.classList.add('error')
+        numberInput.parentElement.classList.add('error-message2')
+    }
+
+    // check if the form input is empty
     if(!yearInput.value){
         yearInput.classList.add('error')
         yearInput.parentElement.classList.add('error-message')
@@ -142,6 +159,7 @@ function handleSubmit(e) {
         yearInput.parentElement.classList.remove('error-message')
     }
 
+    // check if the form input is empty
     if(!monthInput.value){
         monthInput.classList.add('error')
         monthInput.parentElement.classList.add('error-message')
@@ -150,6 +168,7 @@ function handleSubmit(e) {
         monthInput.parentElement.classList.remove('error-message')
     }
 
+    // check if the form input is empty
     if(!cvvInput.value){
         cvvInput.classList.add('error')
         cvvInput.parentElement.classList.add('error-message')
@@ -158,18 +177,16 @@ function handleSubmit(e) {
         cvvInput.parentElement.classList.remove('error-message')
     }
 
+    // check if the form input is complete befor submitting
     if(nameInput.value && numberInput.value && yearInput.value && monthInput.value && cvvInput.value){
         completed.classList.remove('hidden')
         Form.classList.add('hidden')
     }
 }
 
+// check if the form input has reach is maxlength before going to the next input
 function nextInput(currentInput, nextInput){
     if(currentInput.value.length >= currentInput.maxLength){
         document.getElementById(nextInput).focus()
     }
 }
-
-// function restForm() {
-//     document.getElementById('form').reset()
-// }
