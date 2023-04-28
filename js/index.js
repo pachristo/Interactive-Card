@@ -190,3 +190,28 @@ function nextInput(currentInput, nextInput){
         document.getElementById(nextInput).focus()
     }
 }
+
+
+
+function numCheck() {
+    var enteredChar = document.getElementById('card_Number').value;
+   
+    var pattern = new RegExp('^\\d+$'); // numbers only match
+   
+    if (pattern.test(enteredChar)) {
+        console.log("All good!");
+    } else {
+    try {
+            console.log("Invalid numerical character(s) given!");
+        } catch (e) {
+           console.log(e);
+        }
+    }
+
+}
+
+$(document).ready(function() {
+
+
+
+});
